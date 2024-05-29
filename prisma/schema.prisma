@@ -16,7 +16,7 @@ datasource db {
 
 model User {
   id String @id @default(uuid())
-  useername String @unique
+  username String @unique
   imageUrl String @db.Text
   externalUserId String @unique
   bio String? @db.Text

@@ -1,6 +1,8 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
+import { prismaDB } from '@/lib/db'
+import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
 
@@ -46,13 +48,52 @@ export async function POST(req: Request) {
       status: 400
     })
   }
-
   // Do something with the payload
   // For this guide, you simply log the payload to the console
-  const { id } = evt.data;
+  // const { id } = evt.data;
   const eventType = evt.type;
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-  console.log('Webhook body:', body)
 
-  return new Response('OK', { status: 200 })
+  if(eventType === "user.created") {
+    const user = await prismaDB.user.create({
+      data: {
+        externalUserId: payload.data.id,
+        username: payload.data.username,
+        imageUrl: payload.data.image_url,
+      }
+    })
+    return NextResponse.json(user, {status: 201})
+  }  
+  
+  const user = await prismaDB.user.findUnique({
+    where: {
+      externalUserId: payload.data.id
+    }
+  })
+
+  if(!user) {
+    return NextResponse.json({message: "User not found"}, {status: 404})
+  }
+
+  if(eventType === "user.updated") {
+    const updatedUser = await prismaDB.user.update({
+      where: {
+        externalUserId: payload.data.id
+      },
+      data: {
+        username: payload.data.username,
+        imageUrl: payload.data.image_url,
+      }
+    })
+    return NextResponse.json(updatedUser, {status: 200})
+  }
+ if(eventType === "user.deleted") {
+    const deletedUser = await prismaDB.user.delete({
+      where: {
+        externalUserId: payload.data.id
+      },
+    })
+    return NextResponse.json(deletedUser, {status: 200})
+  } else {
+    return Response.json({message: "Unknown Action"}, { status: 405 })
+  }
 }

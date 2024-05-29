@@ -1,6 +1,6 @@
 import React from "react";
-import ClerkProvider from "./ClerkProvider";
-import { ThemeProvider } from "./ThemeProvider";
+import ClerkProvider from "./clerk-provider";
+import { ThemeProvider } from "./theme-provider";
 
 interface IAppProviderProps {
   children: React.ReactNode;
