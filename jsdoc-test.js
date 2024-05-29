@@ -32,3 +32,11 @@ function calculateSum(num1, num2) {
 function isEven(num) {
   return num % 2 === 0;
 }
+
+/**
+ * @typedef {(number|string)} NumberLike
+ */
+
+/**
+ * @param  {NumberLike}
+ */

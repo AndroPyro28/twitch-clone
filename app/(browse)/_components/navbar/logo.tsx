@@ -11,15 +11,19 @@ const font = Poppins({
 
 export const Logo = () => {
   return (
-    <Link href={"/"}>
+    <Link className="" href={"/"}>
       <div className="hidden lg:flex items-center gap-x4 hover:opacity-75 transition">
-        <div className="bg-white rounded-full p-1">
+        <div className="bg-white rounded-full p-1 mr-2">
           <Image
             src="/assets/spooky.svg"
             alt="twitch-clone"
             height={"32"}
             width={"32"}
           />
+        </div>
+        <div className={cn(font.className)}>
+          <p className="text-lg font-semibold">Twitter Clone</p>
+          <p className="text-xs  text-muted-foreground">Let&apos;s play</p>
         </div>
       </div>
     </Link>
