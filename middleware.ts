@@ -31,6 +31,5 @@ export const config = {
 };
 
 const isProtectedRoute = createRouteMatcher([
-  '/',
-  '/api/webhooks/livekit',
+  '/api/webhooks(.*)',
 ]);

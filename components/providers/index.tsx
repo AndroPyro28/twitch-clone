@@ -13,7 +13,7 @@ const AppProvider: React.FC<IAppProviderProps> = ({ children }) => {
         <ThemeProvider
           attribute="class"
           forcedTheme="dark"
-          storageKey="twitter-clone"
+          storageKey="twitch-clone"
           
         >
           {children}

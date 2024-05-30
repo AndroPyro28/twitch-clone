@@ -22,7 +22,7 @@ export const Logo = () => {
           />
         </div>
         <div className={cn(font.className)}>
-          <p className="text-lg font-semibold">Twitter Clone</p>
+          <p className="text-lg font-semibold">Twitch Clone</p>
           <p className="text-xs  text-muted-foreground">Let&apos;s play</p>
         </div>
       </div>

@@ -60,7 +60,6 @@ export const Search = () => {
       >
         <SearchIcon className="h-5 w-5 text-muted-foreground" />
       </Button>
-      search
     </form>
   );
 };
