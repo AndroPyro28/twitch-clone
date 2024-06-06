@@ -9,7 +9,6 @@ interface RecomemdedProps {
 }
 export const Recommended: React.FC<RecomemdedProps> = ({ data }) => {
   const { collapsed } = useSidebar();
-  console.log(data.length);
   const showLabel = !collapsed && data?.length > 0;
   return (
     <div>
