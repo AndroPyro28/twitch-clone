@@ -19,7 +19,7 @@ export const Toggle = () => {
               <p className="font-semibold text-primary">For you</p>
               <Hint label={label} side="right" asChild>
                 <Button
-                  className="h-auto  p-4  ml-auto "
+                  className="h-auto  p-2  ml-auto "
                   variant={"ghost"}
                   onClick={onCollapsed}
                 >

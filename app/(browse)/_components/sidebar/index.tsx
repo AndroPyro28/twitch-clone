@@ -4,7 +4,14 @@ import { Toggle } from "./toggle";
 import { Recommended } from "./recommended";
 import { getRecommended } from "@/lib/service/recommended";
 // server component
-export const Sidebar = async () => {
+
+/**
+ * @async
+ * @function Sidebar 
+ * @return {Promise<React.ReactNode>}
+ */
+
+export const Sidebar = async ():Promise<React.ReactNode> => {
   const recommemded = await getRecommended();
   return (
     <Wrapper>
@@ -14,4 +21,4 @@ export const Sidebar = async () => {
       </div>
     </Wrapper>
   );
-};
+}
