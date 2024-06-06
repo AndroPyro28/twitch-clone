@@ -2,7 +2,7 @@
 import { useSidebar } from "@/store/use-sidebar";
 import { User } from "@prisma/client";
 import React from "react";
-import UserItem from "./user-item";
+import {UserItem} from "./user-item";
 
 interface RecomemdedProps {
   data: User[];
@@ -25,7 +25,7 @@ export const Recommended: React.FC<RecomemdedProps> = ({ data }) => {
             <UserItem key={`recommemded-user-${user.id}`} 
             username={user.username}
             imageUrl={user.imageUrl}
-            isLive={true}
+            isLive={false}
             />
         ))}
       </ul>

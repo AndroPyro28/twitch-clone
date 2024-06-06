@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "./ui/skeleton";
 import { AvatarFallback, Avatar, AvatarImage } from "@/components/ui/avatar";
+import { LiveBadge } from "./live-badge";
 
 const avatarSizes = cva("", {
   variants: {
@@ -23,7 +24,7 @@ interface UserAvatarProps extends VariantProps<typeof avatarSizes> {
   showBadge?: boolean;
 }
 
-const UserAvatar: React.FC<UserAvatarProps> = ({
+export const UserAvatar: React.FC<UserAvatarProps> = ({
   imageUrl,
   username,
   isLive,
@@ -47,10 +48,19 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
         </AvatarFallback>
       </Avatar>
       {canShowBadge && (
-        <div className="absolute -bottom-3 left-1.2 transform  -translate-x-1/2"> Live </div>
+        <div className="absolute -bottom-3 left-1.2 transform  -translate-x-1/2">
+          {" "}
+          <LiveBadge />{" "}
+        </div>
       )}
     </div>
   );
 };
 
-export default UserAvatar;
+interface UserAvatarSkeletonProps extends VariantProps<typeof avatarSizes> {}
+
+export const UserAvatarSkeleton: React.FC<UserAvatarSkeletonProps> = ({
+  size,
+}) => {
+  return <Skeleton className={cn("rounded-full", avatarSizes({ size }))} />;
+};
