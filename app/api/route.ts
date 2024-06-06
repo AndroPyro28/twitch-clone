@@ -1,4 +1,4 @@
-import { withAuth } from "@/lib/auth";
+import { withAuth } from "@/lib/service/auth";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { RedirectType, redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";

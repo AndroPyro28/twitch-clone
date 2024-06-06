@@ -8,10 +8,29 @@
 //   };
 // }
 
-import { User, currentUser } from "@clerk/nextjs/server";
-
+import { currentUser } from "@clerk/nextjs/server";
+import { prismaDB } from "../db";
+import {User} from "@prisma/client"
 export const getCurrentUser = async () => {
-  return await currentUser();
+  const self= await currentUser();
+
+  if(!self  || !self.username) {
+    throw new Error("Unauthorized");
+  }
+
+
+  const user = await  prismaDB.user.findUnique({
+    where: {
+      externalUserId:  self.id,
+    },
+    
+  })
+
+  if(!user)  {
+    throw new Error("Not  found");
+  }
+
+  return user;
 };
 
 interface WithAuthHandler {
