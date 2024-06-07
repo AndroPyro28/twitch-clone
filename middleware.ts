@@ -31,5 +31,5 @@ export const config = {
 };
 
 const isProtectedRoute = createRouteMatcher([
-  '/api/webhooks(.*)',
+  // '/api/webhooks(.*)',
 ]);

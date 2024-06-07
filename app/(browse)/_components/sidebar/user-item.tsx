@@ -37,7 +37,7 @@ export const UserItem: React.FC<UserItemProps> = ({
       <Link href={href}>
         <div
           className={cn(
-            "flex items-center wfull gap-x-44",
+            "flex items-center w-full gap-x-4 relative",
             collapsed && "justify-center"
           )}
         >
