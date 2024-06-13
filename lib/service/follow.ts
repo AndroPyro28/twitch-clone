@@ -31,3 +31,45 @@ export const isFollowingUser = async (userId: string) => {
     return false;
   }
 };
+
+export const followUser = async (id:string) => {
+  const self = await getCurrentUser();
+
+  const otherUser = await prismaDB.user.findUnique({
+    where: {
+      id
+    }
+  })
+
+  if (!otherUser) {
+    throw new  Error("User not found")
+  }
+
+  if (otherUser.id == self.id) {
+    throw new Error("Cannot follow yourself");
+  }
+
+  const existingFollow = await prismaDB.follow.findFirst({
+    where: {
+      followerId: self.id,
+      followingId: otherUser.id,
+    }
+  })
+
+  if(existingFollow) {
+    throw new Error("Already Following")
+  }
+
+  const follow = await prismaDB.follow.create({
+    data: {
+      followerId: self.id,
+      followingId: otherUser.id,
+    },
+    include: {
+      follower:true,
+      following:true
+    }
+  })
+
+  return follow;
+}
