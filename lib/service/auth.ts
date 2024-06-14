@@ -1,13 +1,3 @@
-// export interface Session {
-//   user: {
-//     email: string;
-//     id: string;
-//     name: string;
-//     image?: string;
-//     role: Role;
-//   };
-// }
-
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "../db";
 import {User} from "@prisma/client"
@@ -18,7 +8,6 @@ export const getCurrentUser = async () => {
     throw new Error("Unauthorized");
   }
 
-
   const user = await  db.user.findUnique({
     where: {
       externalUserId:  self.id,
@@ -27,7 +16,32 @@ export const getCurrentUser = async () => {
   })
 
   if(!user)  {
-    throw new Error("Not  found");
+    throw new Error("User not found");
+  }
+
+  return user;
+};
+
+export const getSelfByUsername = async (username:string) => {
+  const self = await currentUser();
+
+  if(!self  || !self.username) {
+    throw new Error("Unauthorized");
+  }
+
+  const user = await  db.user.findUnique({
+    where: {
+      username
+    },
+    
+  })
+
+  if(!user)  {
+    throw new Error("User not found");
+  }
+
+  if(self.username !== user.username)  {
+    throw new Error("Unauthorized");
   }
 
   return user;
