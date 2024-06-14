@@ -1,28 +1,59 @@
-import { prismaDB } from "../db";
+import { db } from "../db";
 import { getCurrentUser } from "./auth";
 
 export const getRecommended = async () => {
   let userId;
   try {
-    const self = await getCurrentUser()
-    userId = self.id
+    const self = await getCurrentUser();
+    userId = self.id;
   } catch (error) {
     userId = null;
   }
-  let users = []
-  if(userId) {
-    users = await prismaDB.user.findMany({
+  let users = [];
+  if (userId) {
+    users = await db.user.findMany({
       orderBy: {
         createdAt: "desc",
       },
-      where:  {
-        id: {
-          not:userId
-        }
-      }
+      where: {
+        AND: [
+          {
+            NOT: {
+              id: userId,
+            },
+          },
+          {
+            NOT: {
+              followedBy: {
+                some: {
+                  followerId: userId
+                }
+              }
+            }
+          },
+          {
+            NOT: {
+              blocking: {
+                some: {
+                  blockedId: userId
+                }
+              }
+            }
+          },
+          {
+            NOT: {
+              blockedBy: {
+                some: {
+                  blockerId: userId
+                }
+              }
+            }
+          }
+        ],
+      },
     });
   } else {
-    users = await prismaDB.user.findMany({
+    users = await db.user.findMany({
       orderBy: {
         createdAt: "desc",
       },
@@ -31,7 +62,7 @@ export const getRecommended = async () => {
   return users;
 };
 
-// prismaDB.user.update({
+// db.user.update({
 //   where:  {
 //      id:  ""
 //   },
@@ -42,7 +73,7 @@ export const getRecommended = async () => {
 //       }
 //     },
 //     following: {
-//       connect:{ 
+//       connect:{
 //         id: ""
 //       }
 //     }

@@ -1,7 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { prismaDB } from '@/lib/db'
+import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
   const eventType = evt.type;
   console.log(eventType)
   if(eventType === "user.created") {
-    const user = await prismaDB.user.create({
+    const user = await db.user.create({
       data: {
         externalUserId: payload.data.id,
         username: payload.data.username,
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
     return NextResponse.json(user, {status: 201})
   }  
   
-  const user = await prismaDB.user.findUnique({
+  const user = await db.user.findUnique({
     where: {
       externalUserId: payload.data.id
     }
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
   }
 
   if(eventType === "user.updated") {
-    const updatedUser = await prismaDB.user.update({
+    const updatedUser = await db.user.update({
       where: {
         externalUserId: payload.data.id
       },
@@ -87,7 +87,7 @@ export async function POST(req: Request) {
     return NextResponse.json(updatedUser, {status: 200})
   }
  if(eventType === "user.deleted") {
-    const deletedUser = await prismaDB.user.delete({
+    const deletedUser = await db.user.delete({
       where: {
         externalUserId: payload.data.id
       },
