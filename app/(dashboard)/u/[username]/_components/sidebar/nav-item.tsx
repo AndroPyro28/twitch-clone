@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { useCreatorSidebar } from "@/store/use-creator-sidebar";
-import { Link, LucideIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 interface NavItemProps {
@@ -21,7 +22,7 @@ export const NavItem: React.FC<NavItemProps> = ({
   return (
     <Button
       className={cn(
-        "w-full h-12",
+        "w-full h-12 bg-transparent hover:bg-accent",
         collapsed ? "justify-center" : "justify-start1",
         isActive && "bg-accent"
       )}
