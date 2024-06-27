@@ -23,7 +23,7 @@ export const NavItem: React.FC<NavItemProps> = ({
     <Button
       className={cn(
         "w-full h-12 bg-transparent hover:bg-accent",
-        collapsed ? "justify-center" : "justify-start1",
+        collapsed ? "justify-center" : "justify-start",
         isActive && "bg-accent"
       )}
     >
