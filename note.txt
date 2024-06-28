@@ -1,1 +1,2 @@
 ngrok http --domain=louse-one-seriously.ngrok-free.app 3000
+jsdoc jsdoc-test.js
