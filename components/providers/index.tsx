@@ -6,7 +6,7 @@ import SonnerProvider from "./sonner-provider";
 interface IAppProviderProps {
   children: React.ReactNode;
 }
-
+// manage all provider in one place
 const AppProvider: React.FC<IAppProviderProps> = ({ children }) => {
   return (
     <>

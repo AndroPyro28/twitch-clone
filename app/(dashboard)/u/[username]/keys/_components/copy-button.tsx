@@ -24,6 +24,7 @@ export const CopyButton: React.FC<CopyClientProps> = ({ value }) => {
       onClick={onCopy}
       disabled={!value || isCopied}
       variant={"ghost"}
+      className="cursor-pointer"
       size={"sm"}
     >
       <Icon className="size-4" />

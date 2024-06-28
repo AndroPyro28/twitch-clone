@@ -17,7 +17,7 @@ export const isBlocking = async (id: string) => {
     if (otherUser.id === self.id) {
       return false;
     }
-
+    // checking if user and current user blocking each other
     const existingBlock = await db.block.findFirst({
       where: {
         OR:[
@@ -56,7 +56,7 @@ export const blockUser = async (id: string) => {
     throw new Error("User Not Found");
   }
 
-  const existingBlock = await db?.block.findUnique({
+  const existingBlock = await db.block.findUnique({
     where: {
       blockerId_blockedId: {
         blockedId: otherUser.id,
@@ -75,7 +75,7 @@ export const blockUser = async (id: string) => {
       blockerId: self.id,
     },
     include: {
-        blocked:true
+      blocked:true
     }
   });
 

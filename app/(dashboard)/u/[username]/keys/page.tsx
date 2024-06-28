@@ -3,6 +3,7 @@ import React from "react";
 import { UrlCard } from "./_components/url-card";
 import { getCurrentUser } from "@/lib/service/auth";
 import { getStreamByUserId } from "@/lib/service/stream";
+import { KeyCard } from "./_components/key-card";
 
 const KeysPage = async () => {
   const self = await getCurrentUser();

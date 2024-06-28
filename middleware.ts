@@ -1,8 +1,16 @@
 import { clerkMiddleware, createRouteMatcher, clerkClient } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 /**
  * @function
  */
+
+// export function middleware(request: NextRequest) {
+   // Add a new header x-current-path which passes the path to downstream components
+//   const headers = new Headers(request.headers);
+//   headers.set("x-current-path", request.nextUrl.pathname);
+//   return NextResponse.next({ headers });
+// }
+
 export default clerkMiddleware(async (auth, req,) => {
   if (isProtectedRoute(req)) {
        auth().protect()
