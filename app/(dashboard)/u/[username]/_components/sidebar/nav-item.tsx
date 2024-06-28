@@ -20,21 +20,21 @@ export const NavItem: React.FC<NavItemProps> = ({
 }) => {
   const { collapsed } = useCreatorSidebar((state) => state);
   return (
-    <Button
-      className={cn(
-        "w-full h-12 bg-transparent hover:bg-accent",
-        collapsed ? "justify-center" : "justify-start",
-        isActive && "bg-accent"
-      )}
-    >
-      <Link href={href}>
+    <Link href={href}>
+      <Button
+        className={cn(
+          "w-full h-12 bg-transparent hover:bg-accent",
+          collapsed ? "justify-center" : "justify-start",
+          isActive && "bg-accent"
+        )}
+      >
         <div className="flex item-center gap-x-4">
           {" "}
           <Icon className={cn("size-4", collapsed ? "mr-0" : "mr-2")} />
           {!collapsed && <span>{label}</span>}
         </div>
-      </Link>
-    </Button>
+      </Button>
+    </Link>
   );
 };
 

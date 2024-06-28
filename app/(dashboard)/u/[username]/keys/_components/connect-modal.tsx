@@ -23,7 +23,7 @@ export const ConnectModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="primary">Generate Connection</Button>
+        <Button  className="text-white rounded-[10px]">Generate Connection</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -50,7 +50,7 @@ export const ConnectModal = () => {
           <DialogClose>
             <Button variant={"ghost"}>Cancel</Button>
           </DialogClose>
-          <Button onClick={() => {}} variant={"primary"}>
+          <Button onClick={() => {}} >
             Generate
           </Button>
         </div>

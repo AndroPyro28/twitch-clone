@@ -1,3 +1,4 @@
+"use client"
 import { updateStream } from "@/actions/stream";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
@@ -30,7 +31,7 @@ export const ToggleCard: React.FC<ToggleCardProps> = ({
   return (
     <div className="rounded-xl bg-muted p-6">
       <div className="flex items-center justify-between">
-        <p className="font-semibold shrink-0"></p>
+        <p className="font-semibold shrink-0">{label}</p>
         <div className="space-y-2">
           <Switch
             checked={value}

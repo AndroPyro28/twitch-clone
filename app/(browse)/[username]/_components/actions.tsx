@@ -54,7 +54,6 @@ export const Actions: React.FC<ActionProps> = ({ isFollowing, userId }) => {
       <Button
         type="button"
         disabled={isPending}
-        variant={"primary"}
         className="text-white rounded-[5px]"
         onClick={onClick}
       >
