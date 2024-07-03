@@ -12,6 +12,9 @@ export const getRecommended = async () => {
   let users = [];
   if (userId) {
     users = await db.user.findMany({
+      include: {
+        stream:true
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -54,6 +57,9 @@ export const getRecommended = async () => {
     });
   } else {
     users = await db.user.findMany({
+      include: {
+        stream:true
+      },
       orderBy: {
         createdAt: "desc",
       },
