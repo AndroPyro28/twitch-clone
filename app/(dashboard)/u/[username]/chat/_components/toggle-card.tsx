@@ -17,6 +17,7 @@ export const ToggleCard: React.FC<ToggleCardProps> = ({
   value = false,
 }) => {
   const [isPending, startTransition] = useTransition();
+ 
   const onChange = async () => {
     startTransition(() => {
       updateStream({ [field]: !value })
