@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from "./ui/skeleton";
 import { AvatarFallback, Avatar, AvatarImage } from "@/components/ui/avatar";
 import { LiveBadge } from "./live-badge";
+import { useSidebar } from "@/store/use-sidebar";
 
 const avatarSizes = cva("", {
   variants: {
@@ -37,7 +38,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
       <Avatar
         className={cn(
           "",
-          isLive && "ring-rose-500 border border-background",
+          isLive && " ring-rose-500 border-2 border-rose-500 ",
           avatarSizes({ size })
         )}
       >

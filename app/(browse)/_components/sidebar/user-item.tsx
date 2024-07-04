@@ -41,7 +41,9 @@ export const UserItem: React.FC<UserItemProps> = ({
             collapsed && "justify-center"
           )}
         >
-          <UserAvatar imageUrl={imageUrl} username={username} isLive={isLive} />
+          <div className={cn("animate-none", (collapsed && isLive) && "animate-pulse",)}>
+            <UserAvatar imageUrl={imageUrl} username={username} isLive={isLive} />
+          </div>
           {!collapsed && <p className="truncate">{username}</p>}
           {!collapsed && isLive && <LiveBadge className="ml-auto" />}
         </div>
