@@ -1,11 +1,11 @@
 "use client";
 import { useSidebar } from "@/store/use-sidebar";
-import { Stream, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import React from "react";
 import { UserItem, UserItemSkeleton } from "./user-item";
 
 interface RecomemdedProps {
-  data: (User & { stream: Stream | null })[];
+  data: (User & { stream: { isLive: boolean } | null })[];
 }
 export const Recommended: React.FC<RecomemdedProps> = ({ data }) => {
   const { collapsed } = useSidebar();

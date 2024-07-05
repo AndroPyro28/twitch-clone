@@ -1,11 +1,10 @@
 import { db } from "@/lib/db";
+import { Prisma } from "@prisma/client";
 import { WebhookReceiver } from "livekit-server-sdk";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-
 const receiver = new  WebhookReceiver(process.env.LIVEKIT_API_KEY!,  process.env.LIVEKIT_API_SECRET!)
-
 export const POST = async (req:Request) => {
     const body = await req.text()
     const headerPayload = headers()
@@ -40,7 +39,3 @@ export const POST = async (req:Request) => {
 
     return NextResponse.json({message:  "Ok"}, {status:200})
 }
-
-
-
-  
